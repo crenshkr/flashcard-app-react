@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css';
 
+
 function Front() {
   return (
     <div className='front'>
