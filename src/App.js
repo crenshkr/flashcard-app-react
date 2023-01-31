@@ -8,18 +8,32 @@ const arrayOfQandAs = [
   { question: "What goes meow", answer: "A cat" },
 ];
 
+
 function pickRandomEntry(providedArray) {
   const numberOfEntries = providedArray.length;
   const randomEntry = Math.floor(Math.random() * numberOfEntries);
   return providedArray[randomEntry];
 }
 
+const randomQAndAObject = pickRandomEntry(arrayOfQandAs)
+
+const {question, answer} = randomQAndAObject
+
+//This is the same (destructuring)
+
+// const randomQuestion = question
+// const randomAnswer = answer
+
+
 function App() {
   return (
     <div className="App">
-      <Card question="What is your name?" answer="Khalil" />
+      <h1>{question}</h1>
+      <Card question={question} answer={answer} />
     </div>
   );
 }
+
+
 
 export default App;
