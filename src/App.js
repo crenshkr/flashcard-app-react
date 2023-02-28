@@ -1,35 +1,37 @@
 import "./App.css";
 import { Card } from "./Card";
-
-const arrayOfQandAs = [
-  { question: "What goes quack", answer: "A duck" },
-  { question: "What goes moo", answer: "A cow" },
-  { question: "What goes woof", answer: "A dog" },
-  { question: "What goes meow", answer: "A cat" },
-];
+import { pickRandomEntry } from "./utils/pickRandomEntry";
+import React, { useState } from 'react';
+import { arrayOfQandAs } from "./utils/randomQandA"
 
 
-function pickRandomEntry(providedArray) {
-  const numberOfEntries = providedArray.length;
-  const randomEntry = Math.floor(Math.random() * numberOfEntries);
-  return providedArray[randomEntry];
-}
+
 
 const randomQAndAObject = pickRandomEntry(arrayOfQandAs)
 
 const {question, answer} = randomQAndAObject
 
-//This is the same (destructuring)
-
-// const randomQuestion = question
-// const randomAnswer = answer
-
 
 function App() {
+//Going to useState here
+//Whenever state gets updated, a component re-renders
+const [singleQAndA, setSingleQAndA] = useState({question: "first", answer:"first"})
+
+
+function handleOnCLick() {
+  const randomSelectedQAndA = pickRandomEntry(arrayOfQandAs)
+  setSingleQAndA(randomSelectedQAndA)
+  
+  
+}
+
+console.log(singleQAndA.question)
+
   return (
     <div className="App">
-      <h1>{question}</h1>
-      <Card question={question} answer={answer} />
+      <h1>FLASHCARDS</h1>
+      <Card question={singleQAndA.question} answer={singleQAndA.answer} />
+      <button onClick={handleOnCLick}>New Question</button>
     </div>
   );
 }
